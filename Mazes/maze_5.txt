@@ -1,0 +1,11 @@
+9
+9
+w w w w w w w w w
+w p o o o o o o w
+w o o o b o o o w
+w o o b o b o o w
+w o b o h o b o w
+w o o b o b o o w
+w o o o b o o o w
+w o o o o o o o w
+w w w w w w w w w
