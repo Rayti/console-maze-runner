@@ -3,15 +3,14 @@ package com.company;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Maze {
 
     private int rows;
     private int columns;
-    private Field field_under_player;
-    private Player the_player;
+    private Field fieldUnderPlayer;
+    private Player thePlayer;
     private ArrayList<Field> fields;
 
     private Field getField(Position position){
@@ -28,48 +27,10 @@ public class Maze {
         return null;
     }
 
-    public boolean movePlayerDown() {
-        Position temporaryPosition = new Position(the_player.getPosition().getX(), the_player.getPosition().getY() + 1);
-        if(getField(temporaryPosition) instanceof Path || getField(temporaryPosition) instanceof Home){
-            setPlayerNewPosition(temporaryPosition);
-            return true;
-        }else{
-            return false;
-        }
-    }
 
-    public boolean movePlayerUp() {
-        Position temporaryPosition = new Position(the_player.getPosition().getX(), the_player.getPosition().getY() -1);
-        if(getField(temporaryPosition) instanceof Path || getField(temporaryPosition) instanceof Home){
-            setPlayerNewPosition(temporaryPosition);
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    public boolean movePlayerLeft() {
-        Position temporaryPosition = new Position(the_player.getPosition().getX() -1, the_player.getPosition().getY());
-        if(getField(temporaryPosition) instanceof Path || getField(temporaryPosition) instanceof Home){
-            setPlayerNewPosition(temporaryPosition);
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    public boolean movePlayerRight() {
-        Position temporaryPosition = new Position(the_player.getPosition().getX() + 1, the_player.getPosition().getY());
-        if(getField(temporaryPosition) instanceof Path || getField(temporaryPosition) instanceof Home){
-            setPlayerNewPosition(temporaryPosition);
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     public boolean movePlayer(Directions directions) {
-        Position temporaryPosition = new Position(the_player.getPosition().getX(), the_player.getPosition().getY());
+        Position temporaryPosition = new Position(thePlayer.getPosition().getX(), thePlayer.getPosition().getY());
         if (directions.equals(Directions.N)) {
             temporaryPosition.setY(temporaryPosition.getY() - 1);
         }
@@ -140,14 +101,14 @@ public class Maze {
     public void setPlayerNewPosition(Position newPosition) {
         Field temporaryField = getField(newPosition);
         removeField(newPosition);
-        field_under_player.setPosition(the_player.getPosition());
-        the_player.setPosition(newPosition);
-        fields.add(field_under_player);
-        field_under_player = temporaryField;
+        fieldUnderPlayer.setPosition(thePlayer.getPosition());
+        thePlayer.setPosition(newPosition);
+        fields.add(fieldUnderPlayer);
+        fieldUnderPlayer = temporaryField;
     }
 
     public boolean playerFoundHome(){
-        return field_under_player instanceof Home;
+        return fieldUnderPlayer instanceof Home;
     }
 
     public void loadNewMaze(int level) throws FileNotFoundException {
@@ -160,15 +121,15 @@ public class Maze {
                 fields.add(generateField(scanner.next().charAt(0), new Position(j, i)));
             }
         }
-        field_under_player = generateField('o',new Position(-1,-1));
+        fieldUnderPlayer = generateField('o',new Position(-1,-1));
         //fields.add(field_under_player);
     }
 
     private Field generateField(char c, Position position){
         switch (c){
             case 'p':
-                the_player = new Player(position);
-                return the_player;
+                thePlayer = new Player(position);
+                return thePlayer;
             case 'h':
                 return new Home(position);
             case 'o':
