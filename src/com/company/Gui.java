@@ -1,7 +1,13 @@
 package com.company;
 
+/**
+ *
+ */
 public class Gui {
 
+    /**
+     *
+     */
     public void drawAuthors(){
         System.out.println(
                 "*****Milosz Karlowicz*****\n" +
@@ -10,6 +16,10 @@ public class Gui {
                 "\n" +
                 "Press Enter");
     }
+
+    /**
+     *
+     */
     public void drawMenu(){
         System.out.println("\n** MAZE RUNNER **\n" +
                 "Task is simple - find your way to home!\n" +
@@ -20,6 +30,9 @@ public class Gui {
                 " - q - quit\n");
     }
 
+    /**
+     *
+     */
     public void drawHelp(){
         System.out.println(" - r - restart level\n" +
                 " - p - back to menu\n" +

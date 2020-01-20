@@ -6,20 +6,41 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ *
+ */
 public class LevelHandler {
+    /**
+     *
+     * @param levelsAmount
+     */
     public LevelHandler(int levelsAmount){
         this.levelsAmount = levelsAmount;
         hashMap = new HashMap<>();
         loadHashMap();
     }
 
+    /**
+     *
+     */
     private HashMap<Integer, Integer> hashMap;
+
+    /**
+     *
+     */
     private int levelsAmount;
 
+    /**
+     *
+     * @return
+     */
     public int getLevelsAmount() {
         return levelsAmount;
     }
 
+    /**
+     *
+     */
     public void loadHashMap(){
         int key, value;
         try{
@@ -35,6 +56,9 @@ public class LevelHandler {
         }
     }
 
+    /**
+     *  cofa zapamietane zmiany o tym ktore labirynty sie przeszlo
+     */
     public void resetSave(){
         for (int i = 1; i <= levelsAmount; i++) {
             hashMap.remove(i);
@@ -42,6 +66,9 @@ public class LevelHandler {
         }
     }
 
+    /**
+     *  zapisuje do pliku zmiany w tym ktore labirynty sie przeszlo
+     */
     public void save() {
         try{
             PrintWriter printWriter = new PrintWriter(new File("Mazes/levelsFinished.txt"));
@@ -55,11 +82,18 @@ public class LevelHandler {
         }
     }
 
+    /**
+     *  zapisanie ukonczenia wybranego poziomu
+     * @param levelNumber
+     */
     public void levelFinished(int levelNumber) {
         hashMap.remove(levelNumber);
         hashMap.put(levelNumber, 1);
     }
 
+    /**
+     *
+     */
     public void drawLevels(){
         System.out.println("Levels: ");
         for (int i = 1; i <= levelsAmount; i++) {

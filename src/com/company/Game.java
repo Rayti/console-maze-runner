@@ -5,7 +5,14 @@ import java.io.FileNotFoundException;
 import java.security.DigestException;
 import java.util.Scanner;
 
+/**
+ *
+ */
 public class Game {
+    /**
+     *
+     * @param levelsAmount
+     */
     public Game(int levelsAmount) {
         maze = new Maze();
         try{
@@ -23,22 +30,49 @@ public class Game {
         mainLoop();
     }
 
+    /**
+     *
+     */
     private Maze maze;
 
+    /**
+     *
+     */
     private Gui gui;
 
+    /**
+     *
+     */
     private int levelChosen;
 
+    /**
+     *
+     */
     private boolean isMenu;
 
+    /**
+     *
+     */
     private boolean choosingLevels;
 
+    /**
+     *
+     */
     private boolean quit;
 
+    /**
+     *
+     */
     private Scanner scanner;
 
+    /**
+     *
+     */
     private LevelHandler levelHandler;
 
+    /**
+     *  glowna petla gry
+     */
     private void mainLoop(){
         while (!quit) {
             if(isMenu && !choosingLevels){
@@ -56,6 +90,9 @@ public class Game {
         }
     }
 
+    /**
+     *  przypadek kiedy w menu wejdziewy w wybor poziomow
+     */
     private void levelsCase(){
         char c = scanner.nextLine().charAt(0);
         int lvl = (int)c - 48; //Zamiana z Ascii na inta
@@ -84,6 +121,9 @@ public class Game {
         System.out.println("Wrong command!");
     }
 
+    /**
+     *  przypadek gdy jesesmy w glownym menu
+     */
     private void menuCase(){
         gui.drawMenu();
         char c;
@@ -120,6 +160,9 @@ public class Game {
         }
     }
 
+    /**
+     *  przypadek gdy klikniemy start
+     */
     private void gameLoop(){
         System.out.println("*Maze number " + levelChosen + "*");
         maze.drawMaze();
